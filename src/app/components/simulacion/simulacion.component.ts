@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
+
+interface Viaje {
+  parada: number,
+  aleatorioSubir: number,
+  pasajerosSuben: number,
+  aleatoriosBajar: number,
+  pasajerosBajan: number,
+  pasajerosFinales: number  
+}
+
 @Component({
   selector: 'app-simulacion',
   templateUrl: './simulacion.component.html',
@@ -7,9 +17,151 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimulacionComponent implements OnInit {
 
+  public viajes: Viaje[] = []
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  simulacion(){
+    let randomSubir, randomBajar, pasajBajan, pasajSuben
+    let pasajFinales = 0
+    
+    for (let i = 1; i < 5; i++) {
+
+      randomBajar = Math.random()
+      randomSubir = Math.random()    
+      
+      pasajSuben = this.determinarPasajerosSuben(randomSubir,i)
+      pasajBajan = this.determinarPasajerosBajan(randomBajar,i)
+
+      if(pasajFinales>pasajBajan){
+        pasajFinales -= pasajBajan 
+      }
+      
+      let trayecto: Viaje = {
+        parada: i,
+        aleatorioSubir: randomSubir,
+        pasajerosSuben: pasajSuben,
+        aleatoriosBajar: randomBajar,
+        pasajerosBajan: pasajBajan,
+        pasajerosFinales: pasajFinales
+      }
+
+      this.viajes.push(trayecto)
+    }
+  }
+  
+  determinarPasajerosSuben(aleatorio: number, estacion: number){
+
+    // Primera parada
+    if(estacion == 1){
+      if(aleatorio>=0&&aleatorio<=0.51){
+        return 4
+      }
+      else if(aleatorio>0.51&&aleatorio<=0.84){
+        return 5
+      }
+      else if(aleatorio>0.84&&aleatorio<=1){
+        return 6
+      }
+    }
+    // Segunda parada
+    else if(estacion == 2){
+      if(aleatorio>=0&&aleatorio<=0.07){
+        return 0
+      }
+      else if(aleatorio>0.07&&aleatorio<=0.48){
+        return 1
+      }
+      else if(aleatorio>0.48&&aleatorio<=0.81){
+        return 2
+      }
+      else if(aleatorio>0.81&&aleatorio<=0.95){
+        return 3
+      }
+      else if(aleatorio>0.95&&aleatorio<=0.98){
+        return 4
+      }
+      else if(aleatorio>0.98&&aleatorio<=0.99){
+        return 5
+      }
+      else if(aleatorio>0.98&&aleatorio<=1){
+        return 6
+      }
+    } 
+
+    // Tercera parada
+    else if(estacion == 3){
+      if(aleatorio>=0&&aleatorio<=0.02){
+        return 0
+      }
+      else if(aleatorio>0.02&&aleatorio<=0.21){
+        return 1
+      }
+      else if(aleatorio>0.21&&aleatorio<=0.34){
+        return 2
+      }
+      else if(aleatorio>0.34&&aleatorio<=0.73){
+        return 3
+      }
+      else if(aleatorio>0.73&&aleatorio<=0.97){
+        return 4
+      }
+      else if(aleatorio>0.97&&aleatorio<=0.99){
+        return 5
+      }
+      else if(aleatorio>0.99&&aleatorio<=1){
+        return 6
+      }
+    }
+  }
+
+  //-----------------------------------------------------------------------------------------------------
+
+  determinarPasajerosBajan(aleatorio: number, estacion: number){
+if(estacion == 1)return 0
+// Segunda parada
+if(estacion == 2){
+  if(aleatorio>=0&&aleatorio<=0.38){
+    return 0
+  }
+  else if(aleatorio>0.38&&aleatorio<=0.66){
+    return 1
+  }
+  else if(aleatorio>0.66&&aleatorio<=0.96){
+    return 2
+  }
+  else if(aleatorio>0.96&&aleatorio<=0.98){
+    return 3
+  }
+  else if(aleatorio>0.98&&aleatorio<=0.99){
+    return 4
+  }
+  else if(aleatorio>0.99&&aleatorio<=1){
+    return 5
+  }  
+} 
+
+// Tercera parada
+else if(estacion == 3){
+  if(aleatorio>=0&&aleatorio<=0.45){
+    return 0
+  }
+  else if(aleatorio>0.45&&aleatorio<=0.65){
+    return 1
+  }
+  else if(aleatorio>0.65&&aleatorio<=0.92){
+    return 2
+  }
+  else if(aleatorio>0.92&&aleatorio<=0.98){
+    return 3
+  }
+  else if(aleatorio>0.98&&aleatorio<=1){
+    return 4
+  }  
+}
   }
 
 }
