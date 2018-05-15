@@ -1,0 +1,27 @@
+
+<div class="row">
+  <div class="col-sm-4">
+    <h4 class="text-center">Números Aleatorios</h4>
+    <table class="table table-hover table-responsive">
+      <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Valor</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let num of numeros">
+        <td>{{num.indice}}</td>
+        <td>{{num.valor}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-8">
+    <h4 class="text-center">Prueba de Chi Cuadrado</h4>
+    <div class="text-center"><button (click)="save()" type="button" class="btn btn-outline-primary">Save to PDF</button></div>
+  </div>
+</div>
+
+
