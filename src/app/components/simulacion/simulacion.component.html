@@ -1,7 +1,7 @@
 <div class="container">
     <div class="text-center"><button type="button" class="btn btn-outline-primary">Iniciar Simulación</button></div>
     <hr>
-  <table class="table table-hover table-responsive">
+  <table class="table table-hover table-responsive table-dark">
     <thead class="thead-dark">
     <tr>
       <th scope="col">Paradero</th>
@@ -15,14 +15,14 @@
     </tr>
     </thead>
     <tbody>  
-    <tr class="text-center">
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
+    <tr *ngFor="let x of viajes" class="text-center">
+      <td>{{x.parada}}</td>
+      <td>{{x.pasajerosIniciales}}</td>
+      <td>{{x.aleatorioSubir}}</td>
+      <td>{{x.pasajerosSuben}}</td>
+      <td>{{x.aleatoriosBajar}}</td>
+      <td>{{x.pasajerosBajan}}</td>
+      <td>{{x.pasajerosFinales}}</td>
     </tr>
     </tbody>
   </table>

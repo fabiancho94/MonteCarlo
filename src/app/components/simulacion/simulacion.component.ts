@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 interface Viaje {
   parada: number,
+  pasajerosIniciales: number,
   aleatorioSubir: number,
   pasajerosSuben: number,
   aleatoriosBajar: number,
@@ -18,14 +19,18 @@ interface Viaje {
 export class SimulacionComponent implements OnInit {
 
   public viajes: Viaje[] = []
+  public contSubir: number = 0 
+  public contBajar: number = 0
+  public contTotales: number = 0
 
   constructor() { }
 
   ngOnInit() {
+    this.simulacion()
   }
 
   simulacion(){
-    let randomSubir, randomBajar, pasajBajan, pasajSuben
+    let randomSubir, randomBajar, pasajBajan, pasajSuben,pasajIniciales, temp
     let pasajFinales = 0
     
     for (let i = 1; i < 5; i++) {
@@ -34,14 +39,32 @@ export class SimulacionComponent implements OnInit {
       randomSubir = Math.random()    
       
       pasajSuben = this.determinarPasajerosSuben(randomSubir,i)
-      pasajBajan = this.determinarPasajerosBajan(randomBajar,i)
 
-      if(pasajFinales>pasajBajan){
-        pasajFinales -= pasajBajan 
-      }
+      if(i == 1){
+        console.log("Entre");
+        
+        pasajIniciales = 0
+        pasajBajan = 0
+        this.contSubir = pasajSuben
+        pasajFinales = pasajSuben-pasajBajan
+        this.contTotales = pasajFinales        
+      } 
+      else{        
+        pasajIniciales = this.contTotales
+        temp = this.determinarPasajerosBajan
+        if(this.contTotales>temp){
+          pasajBajan = temp
+        }
+        pasajFinales = pasajBajan - pasajFinales
+
+        this.contSubir = pasajSuben
+        this.contBajar = pasajBajan
+        this.contTotales = pasajFinales
+      }   
       
       let trayecto: Viaje = {
         parada: i,
+        pasajerosIniciales: pasajIniciales,
         aleatorioSubir: randomSubir,
         pasajerosSuben: pasajSuben,
         aleatoriosBajar: randomBajar,
