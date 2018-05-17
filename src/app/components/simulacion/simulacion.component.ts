@@ -40,28 +40,37 @@ export class SimulacionComponent implements OnInit {
       
       pasajSuben = this.determinarPasajerosSuben(randomSubir,i)
 
-      if(i == 1){
-        console.log("Entre");
-        
+      if(i == 1){        
         pasajIniciales = 0
         pasajBajan = 0
         this.contSubir = pasajSuben
         pasajFinales = pasajSuben-pasajBajan
         this.contTotales = pasajFinales        
-      } 
+      }
+      
       else{        
         pasajIniciales = this.contTotales
-        temp = this.determinarPasajerosBajan
+        this.contTotales += pasajSuben
+        temp = this.determinarPasajerosBajan(randomBajar, i)
         if(this.contTotales>temp){
           pasajBajan = temp
+        }else{
+          pasajBajan = this.contTotales
+          this.contTotales = 0
         }
-        pasajFinales = pasajBajan - pasajFinales
+        pasajFinales = this.contTotales - pasajBajan
 
         this.contSubir = pasajSuben
         this.contBajar = pasajBajan
         this.contTotales = pasajFinales
       }   
       
+      if(i == 4){
+        pasajBajan = pasajIniciales
+        randomBajar = 0
+        pasajFinales = 0
+
+      }
       let trayecto: Viaje = {
         parada: i,
         pasajerosIniciales: pasajIniciales,
@@ -148,21 +157,27 @@ if(estacion == 1)return 0
 // Segunda parada
 if(estacion == 2){
   if(aleatorio>=0&&aleatorio<=0.38){
+    console.log("Estacion 2: 0");    
     return 0
   }
   else if(aleatorio>0.38&&aleatorio<=0.66){
+    console.log("Estacion 2: 1");
     return 1
   }
   else if(aleatorio>0.66&&aleatorio<=0.96){
+    console.log("Estacion 2: 2");
     return 2
   }
   else if(aleatorio>0.96&&aleatorio<=0.98){
+    console.log("Estacion 2: 3");
     return 3
   }
   else if(aleatorio>0.98&&aleatorio<=0.99){
+    console.log("Estacion 2: 4");
     return 4
   }
   else if(aleatorio>0.99&&aleatorio<=1){
+    console.log("Estacion 2: 5");
     return 5
   }  
 } 
