@@ -11,7 +11,6 @@
       <th scope="col"># Aleatorios Bajar</th>
       <th scope="col">Pasajeros Bajan</th>
       <th scope="col">Pasajeros Finales</th>
-      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>  
@@ -35,9 +34,9 @@
             <div class="card-header">Pasajeros Transportados</div>
             <div class="card-body">
               <h4 class="card-title">Pasajeros movilizados en el trayecto</h4>
-              <p class="card-text">{{pasajTotales}}</p>
+              <p class="card-text" style="color: White;">{{pasajTotales}}</p>
               <h4 class="card-title">Pasajeros que llegan a Tebaida</h4>
-              <p class="card-text">{{lleganTebaida}}</p>
+              <p class="card-text" style="color: White;">{{lleganTebaida}}</p>
             </div>
           </div>
     </div>
@@ -47,7 +46,7 @@
             <div class="card-body">
               <div *ngFor="let din of dinero">
                   <h4 class="card-title">Obtenido por parada </h4>
-                  <p class="card-text">{{din}}</p>
+                  <p class="card-text" style="color: White;">{{din}}</p>
                   <hr>
               </div>
             </div>
@@ -57,8 +56,10 @@
         <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
             <div class="card-header">Utilidades</div>
             <div class="card-body">
-              <h4 class="card-title">Primary card title</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h4 class="card-title">Utilidades</h4>
+              <p class="card-text"> Asumiendo que cada pasaje pasaje tiene un costo de $ 3.000 
+              </p>
+              La utilidad es de: <h4 style="color: White;">{{total}}</h4>
             </div>
           </div>
     </div>    
