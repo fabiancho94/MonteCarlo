@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="text-center"><button type="button" class="btn btn-outline-primary">Iniciar Simulación</button></div>
+    <div class="text-center"><button type="button" class="btn btn-outline-primary">Resultado</button></div>
     <hr>
   <table class="table table-hover table-responsive table-dark">
     <thead class="thead-dark">
@@ -27,12 +27,40 @@
     </tbody>
   </table>
   <hr>
-  <h2> Conclusiones </h2>
-  <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-      <h4 class="card-title">Primary card title</h4>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <h2> Estadisticas Basicas </h2>
+  <hr>
+  <div class="row">
+    <div class="col-sm-4">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">Pasajeros Transportados</div>
+            <div class="card-body">
+              <h4 class="card-title">Pasajeros movilizados en el trayecto</h4>
+              <p class="card-text">{{pasajTotales}}</p>
+              <h4 class="card-title">Pasajeros que llegan a Tebaida</h4>
+              <p class="card-text">{{lleganTebaida}}</p>
+            </div>
+          </div>
     </div>
-  </div>
+    <div class="col-sm-4">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">Dinero Recogido</div>
+            <div class="card-body">
+              <div *ngFor="let din of dinero">
+                  <h4 class="card-title">Obtenido por parada </h4>
+                  <p class="card-text">{{din}}</p>
+                  <hr>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">Utilidades</div>
+            <div class="card-body">
+              <h4 class="card-title">Primary card title</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+    </div>    
+  </div>  
 </div>

@@ -19,9 +19,15 @@ interface Viaje {
 export class SimulacionComponent implements OnInit {
 
   public viajes: Viaje[] = []
+  public dinero: number [] = []
+
   public contSubir: number = 0 
   public contBajar: number = 0
   public contTotales: number = 0
+
+  public money: number
+  public pasajTotales: number = 0
+  public lleganTebaida: number
 
   constructor() { }
 
@@ -39,6 +45,7 @@ export class SimulacionComponent implements OnInit {
       randomSubir = Math.random()    
       
       pasajSuben = this.determinarPasajerosSuben(randomSubir,i)
+
 
       if(i == 1){        
         pasajIniciales = 0
@@ -67,9 +74,10 @@ export class SimulacionComponent implements OnInit {
       
       if(i == 4){
         pasajBajan = pasajIniciales
-        randomBajar = 0
+        randomBajar = ""
         pasajFinales = 0
-
+        randomSubir = ""
+        
       }
       let trayecto: Viaje = {
         parada: i,
@@ -80,7 +88,10 @@ export class SimulacionComponent implements OnInit {
         pasajerosBajan: pasajBajan,
         pasajerosFinales: pasajFinales
       }
-
+      this.money = i<4 ? pasajSuben * 3000 : null
+      this.pasajTotales += pasajSuben
+      this.lleganTebaida = pasajIniciales
+      i < 4 ? this.dinero.push(this.money) : null
       this.viajes.push(trayecto)
     }
   }
@@ -147,6 +158,9 @@ export class SimulacionComponent implements OnInit {
       else if(aleatorio>0.99&&aleatorio<=1){
         return 6
       }
+    }
+    else{
+      return 0
     }
   }
 
